@@ -4,6 +4,7 @@
 // @version      0.0.1
 // @description  移除谷歌翻译框中的换行符，尤其适用于PDF复制文字
 // @author       yuan.zx@outlook.com
+// @match        https://translate.google.cn/*
 // @match        https://translate.google.com/*
 // @license      MIT
 // @grant        none
