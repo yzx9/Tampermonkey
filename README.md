@@ -1,6 +1,6 @@
 # Tampermonkey
 
-Tampermonkey scripts for you:
+Tampermonkey scripts for you.
 
 ## 知乎屏蔽登录弹窗
 
