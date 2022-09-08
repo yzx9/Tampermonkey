@@ -55,4 +55,7 @@
         childList: true,
         subtree: true
     })
+
+    // prevent escape event, see also [#2](https://github.com/yzx9/Tampermonkey/issues/2)
+    window.addEventListener('keydown', e => e.keyCode === 27 && e.stopImmediatePropagation(), true)
 })();
