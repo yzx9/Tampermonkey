@@ -12,6 +12,9 @@
 (function() {
     'use strict';
 
+    // prevent escape event, see also [#2](https://github.com/yzx9/Tampermonkey/issues/2)
+    window.addEventListener('keydown', e => e.keyCode === 27 && e.stopImmediatePropagation(), true)
+
     // watch madal
     let disabled = false
 
@@ -55,7 +58,4 @@
     const header = headerClass.map(clazz => document.querySelector(clazz)).find(el => el)
     loginButtonObserver.observe(header, { childList: true, subtree: true })
     loginButtonObserverCallback()
-
-    // prevent escape event, see also [#2](https://github.com/yzx9/Tampermonkey/issues/2)
-    window.addEventListener('keydown', e => e.keyCode === 27 && e.stopImmediatePropagation(), true)
 })();
