@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         知乎屏蔽登录弹窗
 // @namespace    https://github.com/yzx9/
-// @version      0.3.5
-// @description  屏蔽知乎问题界面的登录弹窗, 首部按钮登录依然可用
+// @version      0.3.6
+// @description  屏蔽知乎问题界面的登录弹窗, 首部按钮登录依然可用，[GitHub Link](https://github.com/yzx9/Tampermonkey)
 // @author       yuan.zx@outlook.com
 // @match        https://*.zhihu.com/*
 // @license      MIT
