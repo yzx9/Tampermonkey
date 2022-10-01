@@ -45,16 +45,16 @@
         }, 100)
     }
 
-    const loginButtonObserver = new MutationObserver(() => {
-        const buttons = Array.from(document.querySelectorAll('.AppHeader-login'))
+    const headerClass = ['.AppHeader', '.ColumnPageHeader']
+    const loginButtonObserverCallback = () => {
+        const buttons = headerClass.map(clazz => Array.from(document.querySelectorAll(`${clazz} button`))).filter(a => a.length).flat()
         buttons.forEach(button => button.removeEventListener('click', listener))
         buttons.forEach(button => button.addEventListener('click', listener))
-    })
-
-    loginButtonObserver.observe(document.querySelector('.AppHeader'), {
-        childList: true,
-        subtree: true
-    })
+    }
+    const loginButtonObserver = new MutationObserver(loginButtonObserverCallback)
+    const header = headerClass.map(clazz => document.querySelector(clazz)).find(el => el)
+    loginButtonObserver.observe(header, { childList: true, subtree: true })
+    loginButtonObserverCallback()
 
     // prevent escape event, see also [#2](https://github.com/yzx9/Tampermonkey/issues/2)
     window.addEventListener('keydown', e => e.keyCode === 27 && e.stopImmediatePropagation(), true)
