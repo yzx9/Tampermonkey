@@ -8,18 +8,18 @@
 // @license      MIT
 // @grant        none
 // ==/UserScript==
- 
+
 (function() {
     'use strict';
- 
+
     // watch madal
     let disabled = false
- 
+
     const body = document.body
     const html = document.documentElement
- 
+
     const getModal = () => document.querySelector('.signFlowModal')
- 
+
     const modalObserver = new MutationObserver(() => {
         const modal = getModal()
         if (!disabled && modal) {
@@ -30,12 +30,12 @@
             html.style.marginRight = 'auto'
         }
     })
- 
+
     modalObserver.observe(body, {
         childList: true,
         subtree: false
     })
- 
+
     // watch login button
     const listener = () => {
         disabled = true
@@ -44,13 +44,13 @@
             close.addEventListener('click', () => (disabled = false))
         }, 100)
     }
- 
+
     const loginButtonObserver = new MutationObserver(() => {
         const buttons = Array.from(document.querySelectorAll('.AppHeader-login'))
         buttons.forEach(button => button.removeEventListener('click', listener))
         buttons.forEach(button => button.addEventListener('click', listener))
     })
- 
+
     loginButtonObserver.observe(document.querySelector('.AppHeader'), {
         childList: true,
         subtree: true
