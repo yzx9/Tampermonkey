@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         翻译移除换行符
 // @namespace    https://github.com/yzx9/
-// @version      0.0.2
+// @version      0.0.3
 // @description  移除谷歌翻译框中的换行符，尤其适用于PDF复制文字
 // @author       yuan.zx@outlook.com
 // @match        https://translate.google.cn/*
 // @match        https://translate.google.com/*
+// @updateURL    https://raw.githubusercontent.com/yzx9/Tampermonkey/main/translate-remove-newline.js
 // @license      MIT
 // @grant        none
 // ==/UserScript==
