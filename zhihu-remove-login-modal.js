@@ -17,21 +17,31 @@
     window.addEventListener('keydown', e => e.keyCode === 27 && e.stopImmediatePropagation(), true)
 
     // watch madal
-    let disabled = false
-
+    let modalDisabled = false
+    let footDialogDisabled = false
     const body = document.body
     const html = document.documentElement
 
     const getModal = () => document.querySelector('.signFlowModal')
 
+    // const getFootDialog = () => document.querySelector('img[src="https://static.zhihu.com/heifetz/assets/liukanshan-peek.a71ecf3e.png"]')
+    const getFootDialog = () => Array.from(document.querySelectorAll('button')).filter(item => item.innerText.match(/立即登录/))[0]
     const modalObserver = new MutationObserver(() => {
+        // clear login modal
         const modal = getModal()
-        if (!disabled && modal) {
+        if (!modalDisabled && modal) {
             let parent = modal.parentNode
             while (parent.parentNode !== body) parent = parent.parentNode
             body.removeChild(parent)
             html.style.overflow = 'auto'
             html.style.marginRight = 'auto'
+        }
+        // clear foot prompt dialog
+        let footDialog = getFootDialog()
+        if(!footDialogDisabled && footDialog) {
+            while (footDialog.parentNode !== body) footDialog = footDialog.parentNode
+            body.removeChild(footDialog)
+            footDialogDisabled = true
         }
     })
 
@@ -42,10 +52,10 @@
 
     // watch login button
     const listener = () => {
-        disabled = true
+        modalDisabled = true
         setTimeout(() => {
             const close = document.querySelector('.Modal-closeButton')
-            close.addEventListener('click', () => (disabled = false))
+            close.addEventListener('click', () => (modalDisabled = false))
         }, 100)
     }
 
