@@ -18,7 +18,8 @@
 
     // watch madal
     let modalDisabled = false
-    let footDialogDisabled = false
+    let footDialog = null
+
     const body = document.body
     const html = document.documentElement
 
@@ -26,6 +27,7 @@
 
     // const getFootDialog = () => document.querySelector('img[src="https://static.zhihu.com/heifetz/assets/liukanshan-peek.a71ecf3e.png"]')
     const getFootDialog = () => Array.from(document.querySelectorAll('button')).filter(item => item.innerText.match(/立即登录/))[0]
+    
     const modalObserver = new MutationObserver(() => {
         // clear login modal
         const modal = getModal()
@@ -37,11 +39,10 @@
             html.style.marginRight = 'auto'
         }
         // clear foot prompt dialog
-        let footDialog = getFootDialog()
-        if(!footDialogDisabled && footDialog) {
-            while (footDialog.parentNode !== body) footDialog = footDialog.parentNode
-            body.removeChild(footDialog)
-            footDialogDisabled = true
+        if(!footDialog) {
+            footDialog = getFootDialog()
+            while (footDialog && footDialog.parentNode !== body) footDialog = footDialog.parentNode
+            footDialog && body.removeChild(footDialog)
         }
     })
 
