@@ -25,7 +25,6 @@
 
     const getModal = () => document.querySelector('.signFlowModal')
 
-    // const getFootDialog = () => document.querySelector('img[src="https://static.zhihu.com/heifetz/assets/liukanshan-peek.a71ecf3e.png"]')
     const getFootDialog = () => Array.from(document.querySelectorAll('button')).filter(item => item.innerText.match(/立即登录/))[0]
     
     const modalObserver = new MutationObserver(() => {
