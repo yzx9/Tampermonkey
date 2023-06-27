@@ -24,8 +24,9 @@
     const html = document.documentElement
 
     const getModal = () => document.querySelector('.signFlowModal')
-
-    const getFootDialog = () => Array.from(document.querySelectorAll('button')).filter(item => item.innerText.match(/立即登录/))[0]
+    
+    const RE_LOGIN_BTN = /立即登录/
+    const getFootDialog = () => Array.from(document.querySelectorAll('button')).filter(item => item.innerText.match(RE_LOGIN_BTN))[0]
     
     const modalObserver = new MutationObserver(() => {
         // clear login modal
